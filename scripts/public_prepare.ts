@@ -8,7 +8,9 @@ const args = Deno.args[0] === "public-prepare"
   ? Deno.args.slice(1)
   : Deno.args;
 const exportCandidate = args.includes("--prepare");
-if (args.some((arg) => arg !== "--prepare")) {
+const buildCandidate = args.length === 1 &&
+  (args[0] === "--build" || args[0] === "public-build");
+if (!buildCandidate && args.some((arg) => arg !== "--prepare")) {
   throw Error("Unknown argument");
 }
 async function git(...args: string[]): Promise<Uint8Array> {
@@ -29,7 +31,7 @@ const hash = async (b: Uint8Array) =>
 // The running helper itself must match the staged regular file; like any local
 // tool, its code and the embedded anchor must be reviewed before trusting it.
 const reviewHash =
-  "2fdcc087f6b798773345fe48bc02727279b3ffba305ba17f9b2445aa98de3a7e";
+  "56a830b5c81dcf0d1aeaa1167d4e787789cdca65441841395e565a3ded82eb44";
 const sidecarPath = "scripts/source-review-hashes.json";
 const helperPath = "scripts/public_prepare.ts";
 const indexText = decode(await git("ls-files", "--stage", "-z"));
@@ -105,19 +107,6 @@ if (
   config.schemaVersion !== 1 || !Array.isArray(config.files) ||
   !config.files.length || config.releaseStatus !== "source-approved"
 ) throw Error("Invalid public source selection");
-const modes = new Map(
-  decode(await git("ls-files", "--stage", "-z")).split("\0").filter(Boolean)
-    .map((line) => {
-      const separator = line.indexOf("\t");
-      const metadata = line.slice(0, separator);
-      const path = line.slice(separator + 1);
-      const [mode, , stage] = metadata.split(" ");
-      if (stage !== "0") {
-        throw Error("Resolve index conflicts before reviewing");
-      }
-      return [path, mode];
-    }),
-);
 const paths = config.files as string[];
 if (new Set(paths).size !== paths.length) {
   throw Error("Duplicate selected source path");
@@ -144,7 +133,7 @@ for (const path of paths) {
     /(?:^|\/)(?:AGENTS\.md|TASKS\.md|PLAN\.md|ERRORLOG\.txt|SOURCE-MANIFEST\.json)$/
       .test(path)
   ) throw Error(`Private source selection: ${path}`);
-  const mode = modes.get(path);
+  const mode = indexed.get(path)?.mode;
   if (mode !== "100644" && mode !== "100755") {
     throw Error(
       `Selected path is missing or not a regular indexed file: ${path}`,
@@ -177,6 +166,19 @@ for (const path of paths) {
 }
 const files = entries.map(({ data: _data, ...entry }) => entry);
 const seal = await hash(new TextEncoder().encode(JSON.stringify(files)));
+if (buildCandidate) {
+  const builder = entries.find((entry) =>
+    entry.path === "scripts/reviewed_snapshot.ts"
+  );
+  if (!builder) throw Error("Reviewed snapshot builder is not selected");
+  const encoded = btoa(
+    Array.from(builder.data, (byte) => String.fromCharCode(byte)).join(""),
+  );
+  const module = await import(`data:application/typescript;base64,${encoded}`);
+  const result = await module.buildReviewedSnapshot(root, entries);
+  console.log(JSON.stringify(result.result));
+  Deno.exit(0);
+}
 if (exportCandidate) {
   const receipt = new TextEncoder().encode(
     JSON.stringify(

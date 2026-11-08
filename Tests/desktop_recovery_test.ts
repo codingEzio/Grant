@@ -230,8 +230,20 @@ Deno.test("lock cleanup failure retains operation and recovery context", async (
 });
 
 // codesign inspects signatures only; neither fixture nor system binary is run.
-Deno.test("trusted requirement rejects an ad-hoc lookalike", () =>
+Deno.test("trusted leaf requirement rejects an ad-hoc lookalike", () =>
   fixture(async (root) => {
+    const prefix = `${root}/cert`;
+    const extracted = await new Deno.Command("/usr/bin/codesign", {
+      args: ["--display", `--extract-certificates=${prefix}`, "/usr/bin/true"],
+      stdout: "piped",
+      stderr: "piped",
+    }).output();
+    assert(extracted.success, "could not read system signing certificate");
+    const cert = await Deno.readFile(`${prefix}0`);
+    const leaf = [...new Uint8Array(await crypto.subtle.digest("SHA-1", cert))]
+      .map((n) => n.toString(16).padStart(2, "0")).join("");
+    const requirement =
+      `identifier "com.apple.true" and certificate leaf = H"${leaf}"`;
     const fixtureBinary = `${root}/fixture`;
     await Deno.copyFile("/usr/bin/true", fixtureBinary);
     const signed = await new Deno.Command("/usr/bin/codesign", {
@@ -242,7 +254,7 @@ Deno.test("trusted requirement rejects an ad-hoc lookalike", () =>
         "--identifier",
         "com.apple.true",
         "--requirements",
-        '=designated => identifier "com.apple.true" and anchor apple',
+        `=designated => ${requirement}`,
         fixtureBinary,
       ],
       stdout: "piped",
@@ -263,19 +275,11 @@ Deno.test("trusted requirement rejects an ad-hoc lookalike", () =>
     const text = new TextDecoder().decode(displayed.stdout) +
       new TextDecoder().decode(displayed.stderr);
     assert(
-      text.includes(
-        'designated => identifier "com.apple.true" and anchor apple',
-      ),
+      text.toLowerCase().includes(requirement.toLowerCase()),
       "fixture must claim the same requirement",
     );
     await rejected(() =>
-      verifyTrustedRequirement(
-        fixtureBinary,
-        'identifier "com.apple.true" and anchor apple',
-      )
+      verifyTrustedRequirement(fixtureBinary, requirement, leaf)
     );
-    await verifyTrustedRequirement(
-      "/usr/bin/true",
-      'identifier "com.apple.true" and anchor apple',
-    );
+    await verifyTrustedRequirement("/usr/bin/true", requirement, leaf);
   }));

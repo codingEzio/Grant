@@ -1,11 +1,15 @@
-if (Deno.args.length >= 0) {
-  throw new Error(
-    "Public builds are disabled until reviewed snapshot builds are restored.",
-  );
-}
 // Compile source-only artifacts separately from signed/installed candidates.
 import { dirname, join } from "node:path";
 import { hash, root, verifyInputs } from "./check_source.ts";
+// Prevent accidental direct builds outside the reviewed isolated snapshot.
+const token = Deno.env.get("GRANT_REVIEW_TOKEN");
+if (!token) throw Error("Use the reviewed public-build entry point");
+const marker = JSON.parse(
+  await Deno.readTextFile(join(root, "Local/.reviewed-source-build.json")),
+);
+if (marker.schemaVersion !== 1 || marker.token !== token) {
+  throw Error("Use the reviewed public-build entry point");
+}
 if (Deno.args.some((arg) => arg !== "public-build" && arg !== "--build")) {
   throw Error("Unknown public-build argument");
 }

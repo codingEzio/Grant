@@ -164,11 +164,15 @@ export async function replaceDesktopBundle(
 export async function verifyTrustedRequirement(
   path: string,
   requirement: string,
+  leaf: string,
 ) {
+  if (!/^[A-Fa-f0-9]{40}$/.test(leaf)) {
+    throw new Error("Invalid signing certificate fingerprint");
+  }
   await run("/usr/bin/codesign", [
     "--verify",
     "--strict",
-    `-R=(${requirement}) and anchor apple generic`,
+    `-R=(${requirement}) and certificate leaf = H"${leaf}"`,
     path,
   ]);
 }
@@ -187,13 +191,18 @@ async function designatedRequirement(path: string) {
   if (!result.success || !requirement) {
     throw new Error(`Cannot read signed app requirement: ${path}`);
   }
-  const team = text.match(/^TeamIdentifier=([A-Z0-9]{10})$/m)?.[1];
-  if (!team) throw new Error(`Signed app has no developer team: ${path}`);
-  const expression = `(${
-    requirement.slice("designated => ".length)
-  }) and certificate leaf[subject.OU] = "${team}"`;
-  await verifyTrustedRequirement(path, expression);
-  return expression;
+  const expression = requirement.slice("designated => ".length);
+  const matches = [
+    ...expression.matchAll(/certificate\s+leaf\s*=\s*H"([a-fA-F0-9]{40})"/g),
+  ];
+  if (matches.length !== 1) {
+    throw new Error(
+      `Signed candidate must designate one exact leaf certificate: ${path}`,
+    );
+  }
+  const leaf = matches[0][1];
+  await verifyTrustedRequirement(path, expression, leaf);
+  return { expression, leaf };
 }
 export async function readPreferences(root: string) {
   const path = await preferencesPath();
@@ -313,8 +322,16 @@ export async function installDesktop(root: string, candidate: string) {
     });
     const stage = `${stageRoot}/Grant.app`;
     await run("/usr/bin/ditto", [source, stage]);
-    await verifyTrustedRequirement(stage, requirement);
-    if (await designatedRequirement(stage) !== requirement) {
+    await verifyTrustedRequirement(
+      stage,
+      requirement.expression,
+      requirement.leaf,
+    );
+    const stagedRequirement = await designatedRequirement(stage);
+    if (
+      stagedRequirement.expression !== requirement.expression ||
+      stagedRequirement.leaf !== requirement.leaf
+    ) {
       throw new Error("Staged signature differs from candidate.");
     }
     let previousIdentity: string | null = null;
@@ -330,8 +347,16 @@ export async function installDesktop(root: string, candidate: string) {
       if (identity !== "com.alex.Grant.Preview") {
         throw new Error("An unrelated Grant.app exists; it was not replaced.");
       }
-      await verifyTrustedRequirement(installedApp, requirement);
-      if (await designatedRequirement(installedApp) !== requirement) {
+      await verifyTrustedRequirement(
+        installedApp,
+        requirement.expression,
+        requirement.leaf,
+      );
+      const installedRequirement = await designatedRequirement(installedApp);
+      if (
+        installedRequirement.expression !== requirement.expression ||
+        installedRequirement.leaf !== requirement.leaf
+      ) {
         throw new Error(
           "Installed app signing requirement differs; it was not replaced.",
         );
@@ -364,8 +389,16 @@ export async function installDesktop(root: string, candidate: string) {
       backup,
       previousIdentity,
       async (path) => {
-        await verifyTrustedRequirement(path, requirement);
-        if (await designatedRequirement(path) !== requirement) {
+        await verifyTrustedRequirement(
+          path,
+          requirement.expression,
+          requirement.leaf,
+        );
+        const installedRequirement = await designatedRequirement(path);
+        if (
+          installedRequirement.expression !== requirement.expression ||
+          installedRequirement.leaf !== requirement.leaf
+        ) {
           throw new Error("Installed signature differs from candidate.");
         }
       },

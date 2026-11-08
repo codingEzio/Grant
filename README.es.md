@@ -30,6 +30,8 @@ Antes de comprobar o compilar el código, ejecute `python3 scripts/get_fonts.py`
 ./grant public-prepare
 ```
 
+La exportación y la compilación requieren que el índice seleccionado y los archivos de trabajo coincidan con los hashes revisados. Tras revisar y preparar los archivos, ejecuta `python3 scripts/review_source.py --reviewed`, prepara el auxiliar y el archivo de hashes actualizados y ejecuta `./grant public-check`. La compilación usa una copia aislada y no sobrescribe los resultados existentes. Para reemplazar la aplicación, el candidato y la aplicación instalada deben cumplir el mismo requisito designado y certificado hoja exacto; se rechazan las firmas ad hoc.
+
 `check-source` revisa fuentes y referencias fijadas, tres idiomas de interfaz, contexto／respuesta puros, política, shell simulado y ajustes aislados. No realiza autorización, sudo real, carga de plugin, inicio de la aplicación ni instalación. `public-build` crea otro candidato sin firma y relee modos y hashes. Omite lanzadores de instalación del sistema y conserva el puntero al candidato firmado. No debes instalarlo ni abrirlo como componente de autenticación aceptado.
 
 Tras preparar archivos por nombre, `public-check`／`public-prepare` leen la selección exacta del índice Git en `public-source.json`. Una salida distinta no se sobrescribe. Historial Git, configuración privada de firma y registros internos quedan fuera. El análisis limitado no certifica todo el historial ni los binarios.

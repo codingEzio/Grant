@@ -87,6 +87,7 @@
     "Tests/plugin_entry.m",
     "Tests/policy_test.ts",
     "Tests/public_prepare_test.ts",
+    "Tests/reviewed_snapshot_test.ts",
     "Tests/settings_reader_test.ts",
     "Tests/sudo_response.m",
     "Tests/sudo_routing.zsh",
@@ -110,6 +111,8 @@
     "scripts/policy.ts",
     "scripts/public_build.ts",
     "scripts/public_prepare.ts",
+    "scripts/reviewed_snapshot.ts",
+    "scripts/review_source.py",
     "scripts/source-review-hashes.json"
   ],
   "limitations": [

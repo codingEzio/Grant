@@ -956,7 +956,7 @@ try {
       await import("./public_prepare.ts");
       break;
     case "public-build":
-      await import("./public_build.ts");
+      await import("./public_prepare.ts");
       break;
     case "check-source":
       await import("./check_source.ts");

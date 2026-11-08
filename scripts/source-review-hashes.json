@@ -17,27 +17,27 @@
   },
   "README.es.md": {
     "mode": "100644",
-    "sha256": "0bbf189b10b176bc1096a445d7cec8c10e6e492757d14d0b9ae5d61d97547995"
+    "sha256": "1ca5e9489f0ca28f467b13ba986f6a53f6fd88e19c6cfb2547d69aae22db622d"
   },
   "README.ja.md": {
     "mode": "100644",
-    "sha256": "da9c9df6c8936c150f6a3e74c3628b36c6d098b8ebba31dce616c4710c4e348e"
+    "sha256": "661c3f0751e010e84f9f907c4e26a75ad0380c8841d11c487be87b71f8195f4e"
   },
   "README.ko.md": {
     "mode": "100644",
-    "sha256": "64837cd93f2c488868df80ecbfa01503187627ee65b41e0cf7340497af1f7d95"
+    "sha256": "651eb20151e26c3bcd282946e3faeb4df8c32cf151b890abe47b838d8a9eb38c"
   },
   "README.md": {
     "mode": "100644",
-    "sha256": "abeb5103e5f4bd9302b8443ad2be573412c649c7943ada98d8bd8b7980778e9a"
+    "sha256": "89210f2f9914721e346369e4c16718086360f484130f63971a288214f5be9838"
   },
   "README.zh-Hans.md": {
     "mode": "100644",
-    "sha256": "6fd00e56b5f54a92667640eae93b34d4168e0764efd110ff5685f7eb0e4fac8f"
+    "sha256": "a7db00115acab33d0008c71e5016b675b55f0512db8da008e586bd784ddbb3aa"
   },
   "README.zh-Hant.md": {
     "mode": "100644",
-    "sha256": "35e48c446e5ef563b15c7041ddee9fed8956e492c5f99f6e00533d556c71ddc9"
+    "sha256": "2073ffd583873d349b60243610aaf203a91fc9cfc29cf02fa12401ef840b3cf6"
   },
   "References/Setup/LICENSE": {
     "mode": "100644",
@@ -321,7 +321,7 @@
   },
   "Tests/desktop_recovery_test.ts": {
     "mode": "100644",
-    "sha256": "0564b089b40db85b8ea647b248be3e8f086f43a6d0ec9bc6eaf941f4b6a48fd6"
+    "sha256": "b3bcaadeb719dcb13fbd68b48734926b3e2d0d9a52ea3c3f7c80c595781a75a3"
   },
   "Tests/font_fetch_test.py": {
     "mode": "100644",
@@ -337,7 +337,11 @@
   },
   "Tests/public_prepare_test.ts": {
     "mode": "100644",
-    "sha256": "26c78c784bdfef3d05c1045f2697750d34c1125976f7191912543d85243f9ea0"
+    "sha256": "5b99bd1a8fb1631bd772aca4faea8326d9303fd768a0b3fc5620ae3d4474e23a"
+  },
+  "Tests/reviewed_snapshot_test.ts": {
+    "mode": "100644",
+    "sha256": "0e1a3bb27ac702ea651ffa23516b053e26ffa2b7ab032dab3662e518b641d0a2"
   },
   "Tests/settings_reader_test.ts": {
     "mode": "100644",
@@ -385,7 +389,7 @@
   },
   "public-source.json": {
     "mode": "100644",
-    "sha256": "4a1a495c86efbbc551c250001282eaa43b4a207f3d38105a398dc7c054906368"
+    "sha256": "0a6f3467fc8f06b26bd3dbd5fba797020c0393305e97feb252b3b25a4cefde45"
   },
   "script/build_and_run.sh": {
     "mode": "100755",
@@ -405,7 +409,7 @@
   },
   "scripts/desktop.ts": {
     "mode": "100644",
-    "sha256": "f6811a6698b55e0709dbd0697831b5715f95568f919ec158622a374bcae0d8ca"
+    "sha256": "8d35a269df8c21785278e0a04740780a24178d6f27a6e26e024d5569521fe30b"
   },
   "scripts/get_compact_font.py": {
     "mode": "100644",
@@ -417,7 +421,7 @@
   },
   "scripts/grant.ts": {
     "mode": "100644",
-    "sha256": "16ec5c2e0514bf54e971f4d02d847d185cdaa23c3bb85f7388a74bc0d136571c"
+    "sha256": "f3e54c306c3d36741f4c2f18192fa72d3c392cb33430c844de59db73368ea76e"
   },
   "scripts/policy.ts": {
     "mode": "100644",
@@ -425,10 +429,18 @@
   },
   "scripts/public_build.ts": {
     "mode": "100644",
-    "sha256": "e968653f290fcb1f503175fbc94b969083718b6c042542efa4876cb30ca59592"
+    "sha256": "5a2d6608d4136d50809f8b3dc61ee2db447b79d670a91eefa4e03955fb93b899"
   },
   "scripts/public_prepare.ts": {
     "mode": "100644",
-    "sha256": "2346d05b040db6be3eefdd43624b0670ea5ba91fc84f599bded2f18af2dcf0ec"
+    "sha256": "6ea68ff83f8974363bc1fa1fcc891e4bddff6aefe0eeb42c6d90dcfd76e16f62"
+  },
+  "scripts/review_source.py": {
+    "mode": "100644",
+    "sha256": "8ce8e4a3e48c7586e5d02201b3d7f8b8c7a7142a5440337b6c06410de5e05b10"
+  },
+  "scripts/reviewed_snapshot.ts": {
+    "mode": "100644",
+    "sha256": "3af0fbadf9679b4d369d27c784dad4994333fe5635203ae9d0dc1cc978164ac1"
   }
 }
