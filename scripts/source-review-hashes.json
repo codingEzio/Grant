@@ -339,6 +339,10 @@
     "mode": "100644",
     "sha256": "5b99bd1a8fb1631bd772aca4faea8326d9303fd768a0b3fc5620ae3d4474e23a"
   },
+  "Tests/review_source_test.py": {
+    "mode": "100644",
+    "sha256": "e7f0e9f5d6c9ad40b7f5db076d2efbde04d11263032b848260c47125d0d89f9f"
+  },
   "Tests/reviewed_snapshot_test.ts": {
     "mode": "100644",
     "sha256": "0e1a3bb27ac702ea651ffa23516b053e26ffa2b7ab032dab3662e518b641d0a2"
@@ -389,7 +393,7 @@
   },
   "public-source.json": {
     "mode": "100644",
-    "sha256": "0a6f3467fc8f06b26bd3dbd5fba797020c0393305e97feb252b3b25a4cefde45"
+    "sha256": "6a8305f04f76bd12e3cc91b522d6e68427e85c28986f6e5242870877dc141bb1"
   },
   "script/build_and_run.sh": {
     "mode": "100755",
@@ -437,7 +441,7 @@
   },
   "scripts/review_source.py": {
     "mode": "100644",
-    "sha256": "8ce8e4a3e48c7586e5d02201b3d7f8b8c7a7142a5440337b6c06410de5e05b10"
+    "sha256": "cafac1be12e6ae4ac9ca20a5c52fb092a9c1e2926bd1ee3d871bb9e7b716278b"
   },
   "scripts/reviewed_snapshot.ts": {
     "mode": "100644",
