@@ -24,7 +24,7 @@ Before source checks or builds, run `python3 scripts/get_fonts.py` to fetch all 
 ./grant public-build
 ```
 
-Export and build require the selected index and working files to match the reviewed pins. After reviewing changes, stage the named files, run `python3 scripts/review_source.py --reviewed`, stage the updated helper and sidecar, then run `./grant public-check`. Builds use a fresh isolated snapshot; repeat builds verify any existing output without overwriting it. Desktop replacement requires the candidate and installed app to satisfy the same designated requirement and exact leaf certificate; ad-hoc signatures are rejected.
+Export and build require the selected index and working files to match the reviewed pins. After reviewing changes, stage the named files, run `python3 scripts/review_source.py --reviewed`, stage the updated helper and sidecar, then run `./grant public-check`. Builds use a fresh isolated snapshot; repeat builds verify any existing output without overwriting it. Desktop replacement requires the candidate and installed app to satisfy the same designated requirement and exact leaf certificate; ad-hoc signatures are rejected. The pin updater retains prior files in `scripts/.grant-review-previous-*` and reports their names. If interrupted, inspect the reported entries and restore a missing output without overwriting another file before rerunning.
 
 `check-source` verifies pinned fonts/reference bytes and three locales, then runs existing pure credential-context/response, policy and mocked shell/settings checks. Compiler/signing branch tests use recorder tools. It does not load the authorization plugin, launch Grant, request authorization, run real sudo, install shell integration or check an installed account.
 
