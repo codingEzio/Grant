@@ -321,7 +321,7 @@
   },
   "Tests/desktop_recovery_test.ts": {
     "mode": "100644",
-    "sha256": "a4bdfffe1083477907eb47e114b763b2be7cbdb5a237073f949016143e640be2"
+    "sha256": "0564b089b40db85b8ea647b248be3e8f086f43a6d0ec9bc6eaf941f4b6a48fd6"
   },
   "Tests/font_fetch_test.py": {
     "mode": "100644",
@@ -405,7 +405,7 @@
   },
   "scripts/desktop.ts": {
     "mode": "100644",
-    "sha256": "c263218fd1214422d092baab9d2be18e276bde994c4755214f9e1277f418ab21"
+    "sha256": "f6811a6698b55e0709dbd0697831b5715f95568f919ec158622a374bcae0d8ca"
   },
   "scripts/get_compact_font.py": {
     "mode": "100644",
@@ -425,7 +425,7 @@
   },
   "scripts/public_build.ts": {
     "mode": "100644",
-    "sha256": "43713e9b2bc41c34984c8abd91f76b1d95f1a8e1c9b33df667cb1bf21c3c5156"
+    "sha256": "e968653f290fcb1f503175fbc94b969083718b6c042542efa4876cb30ca59592"
   },
   "scripts/public_prepare.ts": {
     "mode": "100644",

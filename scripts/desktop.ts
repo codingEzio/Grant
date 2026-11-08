@@ -159,10 +159,23 @@ export async function replaceDesktopBundle(
   }
 }
 
+// Verify that the signature satisfies the trusted candidate requirement, not
+// merely that an attacker-supplied designated-requirement string matches it.
+export async function verifyTrustedRequirement(
+  path: string,
+  requirement: string,
+) {
+  await run("/usr/bin/codesign", [
+    "--verify",
+    "--strict",
+    `-R=(${requirement}) and anchor apple generic`,
+    path,
+  ]);
+}
 async function designatedRequirement(path: string) {
   await run("/usr/bin/codesign", ["--verify", "--strict", path]);
   const result = await new Deno.Command("/usr/bin/codesign", {
-    args: ["-d", "-r-", path],
+    args: ["--display", "--verbose=4", "-r-", path],
     stdout: "piped",
     stderr: "piped",
   }).output();
@@ -174,7 +187,13 @@ async function designatedRequirement(path: string) {
   if (!result.success || !requirement) {
     throw new Error(`Cannot read signed app requirement: ${path}`);
   }
-  return requirement;
+  const team = text.match(/^TeamIdentifier=([A-Z0-9]{10})$/m)?.[1];
+  if (!team) throw new Error(`Signed app has no developer team: ${path}`);
+  const expression = `(${
+    requirement.slice("designated => ".length)
+  }) and certificate leaf[subject.OU] = "${team}"`;
+  await verifyTrustedRequirement(path, expression);
+  return expression;
 }
 export async function readPreferences(root: string) {
   const path = await preferencesPath();
@@ -294,6 +313,7 @@ export async function installDesktop(root: string, candidate: string) {
     });
     const stage = `${stageRoot}/Grant.app`;
     await run("/usr/bin/ditto", [source, stage]);
+    await verifyTrustedRequirement(stage, requirement);
     if (await designatedRequirement(stage) !== requirement) {
       throw new Error("Staged signature differs from candidate.");
     }
@@ -310,6 +330,7 @@ export async function installDesktop(root: string, candidate: string) {
       if (identity !== "com.alex.Grant.Preview") {
         throw new Error("An unrelated Grant.app exists; it was not replaced.");
       }
+      await verifyTrustedRequirement(installedApp, requirement);
       if (await designatedRequirement(installedApp) !== requirement) {
         throw new Error(
           "Installed app signing requirement differs; it was not replaced.",
@@ -343,6 +364,7 @@ export async function installDesktop(root: string, candidate: string) {
       backup,
       previousIdentity,
       async (path) => {
+        await verifyTrustedRequirement(path, requirement);
         if (await designatedRequirement(path) !== requirement) {
           throw new Error("Installed signature differs from candidate.");
         }

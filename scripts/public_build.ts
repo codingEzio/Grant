@@ -1,6 +1,8 @@
-throw new Error(
-  "Public builds are disabled until reviewed snapshot builds are restored.",
-);
+if (Deno.args.length >= 0) {
+  throw new Error(
+    "Public builds are disabled until reviewed snapshot builds are restored.",
+  );
+}
 // Compile source-only artifacts separately from signed/installed candidates.
 import { dirname, join } from "node:path";
 import { hash, root, verifyInputs } from "./check_source.ts";

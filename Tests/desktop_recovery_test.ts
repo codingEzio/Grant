@@ -4,6 +4,7 @@ import {
   exclusiveMove,
   releaseDesktopLock,
   replaceDesktopBundle,
+  verifyTrustedRequirement,
 } from "../scripts/desktop.ts";
 
 async function exists(path: string) {
@@ -227,3 +228,54 @@ Deno.test("lock cleanup failure retains operation and recovery context", async (
   );
   assert(cleaned, "successful release not called");
 });
+
+// codesign inspects signatures only; neither fixture nor system binary is run.
+Deno.test("trusted requirement rejects an ad-hoc lookalike", () =>
+  fixture(async (root) => {
+    const fixtureBinary = `${root}/fixture`;
+    await Deno.copyFile("/usr/bin/true", fixtureBinary);
+    const signed = await new Deno.Command("/usr/bin/codesign", {
+      args: [
+        "--force",
+        "--sign",
+        "-",
+        "--identifier",
+        "com.apple.true",
+        "--requirements",
+        '=designated => identifier "com.apple.true" and anchor apple',
+        fixtureBinary,
+      ],
+      stdout: "piped",
+      stderr: "piped",
+    }).output();
+    assert(signed.success, "could not sign fixture");
+    const basic = await new Deno.Command("/usr/bin/codesign", {
+      args: ["--verify", "--strict", fixtureBinary],
+      stdout: "piped",
+      stderr: "piped",
+    }).output();
+    assert(basic.success, "fixture must pass ordinary signature verification");
+    const displayed = await new Deno.Command("/usr/bin/codesign", {
+      args: ["-d", "-r-", fixtureBinary],
+      stdout: "piped",
+      stderr: "piped",
+    }).output();
+    const text = new TextDecoder().decode(displayed.stdout) +
+      new TextDecoder().decode(displayed.stderr);
+    assert(
+      text.includes(
+        'designated => identifier "com.apple.true" and anchor apple',
+      ),
+      "fixture must claim the same requirement",
+    );
+    await rejected(() =>
+      verifyTrustedRequirement(
+        fixtureBinary,
+        'identifier "com.apple.true" and anchor apple',
+      )
+    );
+    await verifyTrustedRequirement(
+      "/usr/bin/true",
+      'identifier "com.apple.true" and anchor apple',
+    );
+  }));
