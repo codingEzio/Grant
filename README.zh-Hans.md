@@ -26,7 +26,7 @@ macOS 原生授权样式。**0.2.3 · 本机候选**。目标是让使用系统�
 
 `check-source` 验证固定字体／参考源码哈希及三语完整性，再执行现有的纯凭证上下文／响应、策略、模拟终端和隔离设置测试。编译／签名分支测试使用记录替身工具。不加载授权插件、不启动 Grant、不请求授权、不执行真实 sudo、不安装终端集成，也不检查已安装账号。
 
-`public-build` 使用 `scripts/build.sh --unsigned`，仅写入已忽略的本机候选，封存至 `Local/public-build/<source-seal>/`。它比对权限、哈希、现有标识符与资源，并确认 Mach-O 不含代码签名。重跑会在隔离环境重建并比对现有候选，不覆盖。中间产物与独立的 `Local/latest-unsigned-build.json` 不会取代签名版 `Local/latest-build.json`。未签名产物不生成系统接入／还原命令入口。这些产物供源码检查，不可作为已验收的授权组件安装或启动。
+`public-build` 使用 `scripts/build.sh --unsigned`，仅写入已忽略的本机候选，封存至 `Local/public-build/<source-seal>/`。它比对权限、哈希、现有标识符与资源，并确认 Mach-O 不含代码签名。重跑会在隔离环境验证现有候选，不重建或覆盖。中间产物与独立的 `Local/latest-unsigned-build.json` 不会取代签名版 `Local/latest-build.json`。未签名产物不生成系统接入／还原命令入口。这些产物供源码检查，不可作为已验收的授权组件安装或启动。
 
 维护者明确暂存文件后，执行 `./grant public-check`、`./grant public-prepare`，仅审查／导出 `public-source.json` 指定的 Git 暂存内容。不可覆盖的源码收据记录模式、大小和 SHA-256；重跑精确读回。排除 `.git`、签名设置、内部任务／历史及本机证据。导出回归命令为 `deno test --allow-read --allow-write --allow-run=git,deno Tests/public_prepare_test.ts`。有限扫描不能证明全部历史或二进制内容安全；发布前需另行审查。
 

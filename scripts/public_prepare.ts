@@ -31,7 +31,7 @@ const hash = async (b: Uint8Array) =>
 // The running helper itself must match the staged regular file; like any local
 // tool, its code and the embedded anchor must be reviewed before trusting it.
 const reviewHash =
-  "bdc7781d878ea13332ef4cbf66f3f915d9301e7a09af5ef2cde8f7ea640ad4b3";
+  "8a15c4ea73ff7f24aaff6247f0ff2ab0edf7e72984619d4bf3990cca5404067a";
 const sidecarPath = "scripts/source-review-hashes.json";
 const helperPath = "scripts/public_prepare.ts";
 const indexText = decode(await git("ls-files", "--stage", "-z"));

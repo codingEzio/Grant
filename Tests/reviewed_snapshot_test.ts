@@ -50,8 +50,26 @@ Deno.test("reviewed source snapshot prevents unreviewed compilation", async () =
         if (await Deno.readTextFile("Sources/App/main.swift") !== "synthetic source") throw Error("source");
         const enc = new TextEncoder();
         const hash = async data => Array.from(new Uint8Array(await crypto.subtle.digest("SHA-256", data)), b => b.toString(16).padStart(2,"0")).join("");
-        const sourceSeal = "a".repeat(64);
+        const selection = JSON.parse(await Deno.readTextFile("public-source.json")).files;
+        const assets = JSON.parse(await Deno.readTextFile("Resources/Licenses/fonts.json")).assets;
+        const sourceFiles = [];
+        for (const path of [...selection, ...assets.map(a => a.path)].sort()) {
+          const data = await Deno.readFile(path);
+          const stat = await Deno.stat(path);
+          sourceFiles.push({path, mode: stat.mode & 0o777, bytes: data.length, sha256: await hash(data)});
+        }
+        const sourceSeal = await hash(enc.encode(JSON.stringify(sourceFiles)));
         const output = "Local/public-build/" + sourceSeal;
+        try {
+          await Deno.stat(output);
+          const receipt = JSON.parse(await Deno.readTextFile(output + "/BUILD-RECEIPT.json"));
+          const existing = await Deno.readFile(output + "/result.json");
+          if (await hash(existing) !== receipt.files[0].sha256) throw Error("tampered candidate");
+          console.log(JSON.stringify({sourceSeal,artifactSeal:receipt.artifactSeal,files:receipt.files.length,output,readback:"exact",existing:true,reused:true,signedPointer:"unchanged",releaseReady:false}));
+          Deno.exit(0);
+        } catch (error) {
+          if (!(error instanceof Deno.errors.NotFound)) throw error;
+        }
         await Deno.mkdir(output, {recursive:true});
         const data = enc.encode(JSON.stringify({identity:"org.example.grant", fakeCompiler:true}));
         await Deno.writeFile(output+"/result.json", data, {mode:0o644});
@@ -61,6 +79,9 @@ Deno.test("reviewed source snapshot prevents unreviewed compilation", async () =
         console.log(JSON.stringify({sourceSeal,artifactSeal,files:files.length,output,readback:"exact",existing:false,signedPointer:"unchanged",releaseReady:false}));
       `,
     };
+    source["public-source.json"] = JSON.stringify({
+      files: Object.keys(source),
+    });
     const font = encoder.encode("synthetic font");
     source["Resources/Licenses/fonts.json"] = JSON.stringify({
       assets: [{
@@ -151,7 +172,8 @@ Deno.test("reviewed source snapshot prevents unreviewed compilation", async () =
     );
     const again = await buildReviewedSnapshot(root, entries);
     assert(
-      again.output === result.output && again.result.existing === true,
+      again.output === result.output && again.result.existing === true &&
+        again.result.reused === true,
       "identical output readback",
     );
     assert((await snapshots()).length === 0, "repeated snapshot removed");

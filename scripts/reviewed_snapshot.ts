@@ -166,6 +166,80 @@ export async function buildReviewedSnapshot(
     });
     await Deno.chmod(target, entry.mode === "100755" ? 0o755 : 0o644);
   }
+  // Reuse only the candidate for these exact source bytes. The snapshot's
+  // public_build performs its complete receipt, file, Mach-O and resource
+  // checks before the existing output can be accepted; never replace it.
+  const sourceFiles = entries.map((entry) => ({
+    path: entry.path,
+    mode: entry.mode === "100755" ? 0o755 : 0o644,
+    bytes: entry.data.length,
+    sha256: entry.sha256,
+  })).sort((a, b) => a.path < b.path ? -1 : a.path > b.path ? 1 : 0);
+  const sourceSeal = await hash(
+    new TextEncoder().encode(JSON.stringify(sourceFiles)),
+  );
+  const outputRoot = `${local}/public-build`;
+  const prior = `${outputRoot}/${sourceSeal}`;
+  let priorExists = false;
+  try {
+    const parentStat = await Deno.lstat(outputRoot);
+    if (
+      !parentStat.isDirectory || parentStat.isSymlink ||
+      await Deno.realPath(outputRoot) !== outputRoot
+    ) {
+      throw Error("Public build output must be a real directory");
+    }
+    const priorStat = await Deno.lstat(prior);
+    if (
+      !priorStat.isDirectory || priorStat.isSymlink ||
+      await Deno.realPath(prior) !== prior
+    ) {
+      throw Error("Public build candidate must be a real directory");
+    }
+    priorExists = true;
+  } catch (error) {
+    if (!(error instanceof Deno.errors.NotFound)) throw error;
+  }
+  if (priorExists) {
+    const paths = await treeFiles(prior, ".");
+    if (paths.length > 512) {
+      throw Error("Existing public build has too many files");
+    }
+    let total = 0;
+    for (const item of paths) {
+      const path = item.slice(2);
+      if (!validPath(path)) throw Error("Invalid existing output path");
+      const source = `${prior}/${path}`;
+      const info = await Deno.lstat(source);
+      if (
+        !info.isFile || info.isSymlink ||
+        await Deno.realPath(source) !== source || info.size > 64_000_000
+      ) {
+        throw Error("Invalid existing output file");
+      }
+      total += info.size;
+      if (total > 256_000_000) {
+        throw Error("Existing output exceeds size limit");
+      }
+      const bytes = await Deno.readFile(source);
+      const after = await Deno.lstat(source);
+      if (
+        !after.isFile || after.isSymlink || after.dev !== info.dev ||
+        after.ino !== info.ino || bytes.length !== info.size
+      ) {
+        throw Error("Existing output changed while copying");
+      }
+      const target = `${snapshot}/Local/public-build/${sourceSeal}/${path}`;
+      await Deno.mkdir(target.slice(0, target.lastIndexOf("/")), {
+        recursive: true,
+      });
+      await Deno.writeFile(target, bytes, {
+        createNew: true,
+        mode: info.mode! & 0o777,
+      });
+      await Deno.chmod(target, info.mode! & 0o777);
+    }
+  }
   await Deno.mkdir(`${snapshot}/Local/home`, { recursive: true });
   await Deno.mkdir(`${snapshot}/Local/tmp`, { recursive: true });
   const reviewToken = crypto.randomUUID();
@@ -266,7 +340,6 @@ export async function buildReviewedSnapshot(
       throw Error("Source-only artifact verification failed");
     }
   }
-  const outputRoot = `${local}/public-build`;
   try {
     await Deno.mkdir(outputRoot);
   } catch (error) {

@@ -29,15 +29,15 @@
   },
   "README.md": {
     "mode": "100644",
-    "sha256": "030765af1c722c3bd87d0c8a327bed8edb3358f1a3052b2a293000c7f980e32b"
+    "sha256": "5f884577f90d3139b3ebdb5d0e77457341b32a1740c333b1c1bc3e51ae844721"
   },
   "README.zh-Hans.md": {
     "mode": "100644",
-    "sha256": "6a75a647dbb692b6de99caec69174b1a902981e69946977d768276d11967edad"
+    "sha256": "0f16275f9878f8e6a0e7095e546cdbb761e181a37dbdbc7ec264e9aca941dda7"
   },
   "README.zh-Hant.md": {
     "mode": "100644",
-    "sha256": "3dd8c09ebe9bb0626d58372cd41800a31b391c6441ee03bc451988747697b895"
+    "sha256": "d2bf83b89c8fd9707dcd323161cc9b5a5247b7eb42b8de19d501f48c5b6d956a"
   },
   "References/Setup/LICENSE": {
     "mode": "100644",
@@ -345,7 +345,7 @@
   },
   "Tests/reviewed_snapshot_test.ts": {
     "mode": "100644",
-    "sha256": "0e1a3bb27ac702ea651ffa23516b053e26ffa2b7ab032dab3662e518b641d0a2"
+    "sha256": "3bb64bfd3f6aeb122c17398429ae817812f54af44bfde3c0203fe359dcecd8c6"
   },
   "Tests/settings_reader_test.ts": {
     "mode": "100644",
@@ -445,6 +445,6 @@
   },
   "scripts/reviewed_snapshot.ts": {
     "mode": "100644",
-    "sha256": "3af0fbadf9679b4d369d27c784dad4994333fe5635203ae9d0dc1cc978164ac1"
+    "sha256": "0bfddadc85a8cc9ee8e17904bd60648b0dcf702e238efbbd2bbf65bc339473a2"
   }
 }
