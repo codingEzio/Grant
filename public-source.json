@@ -82,6 +82,7 @@
     "Tests/build_modes_test.py",
     "Tests/compact_font_input_test.py",
     "Tests/credential_context.m",
+    "Tests/desktop_recovery_test.ts",
     "Tests/font_fetch_test.py",
     "Tests/plugin_entry.m",
     "Tests/policy_test.ts",
