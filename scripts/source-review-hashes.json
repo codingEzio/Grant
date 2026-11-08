@@ -1,7 +1,7 @@
 {
   ".gitignore": {
     "mode": "100644",
-    "sha256": "74dcbb66be4832b130b0255c74cc2bf55aa1dfbc6614b69742f75d5bce01cbe5"
+    "sha256": "274af885d3361bb1fa97ee8eef77bce6536c016d6a71909266d79a8f6f237b5f"
   },
   "ARTWORK-LICENSE.md": {
     "mode": "100644",
@@ -341,7 +341,7 @@
   },
   "Tests/review_source_test.py": {
     "mode": "100644",
-    "sha256": "d31f419021bc81cdb5d2b19e6d2d73f713ca6438c3e32907565430ec784e2ce2"
+    "sha256": "1d09596c564e65a438efa9a51e9c9304cc28392f211446ff13fa400391951821"
   },
   "Tests/reviewed_snapshot_test.ts": {
     "mode": "100644",

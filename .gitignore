@@ -5,3 +5,7 @@ Local/
 
 # Obtained separately and verified before building.
 /Resources/Fonts/*.ttf
+
+# Retained by the review updater for explicit recovery.
+/scripts/.grant-review-new-*
+/scripts/.grant-review-previous-*

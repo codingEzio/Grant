@@ -38,6 +38,24 @@ class ReviewUpdateTest(unittest.TestCase):
     def retained(self):
         return list(self.scripts.glob('.grant-review-previous-*'))
 
+    def test_git_ignores_only_retained_review_entries(self):
+        shutil.copy2(script.parent.parent / '.gitignore', self.root / '.gitignore')
+        subprocess.run(['git', 'init', '-q', str(self.root)], check=True)
+        for name in ('.grant-review-new-fixture', '.grant-review-previous-fixture'):
+            path = self.scripts / name
+            path.write_bytes(b'retained')
+            relative = 'scripts/' + name
+            result = subprocess.run(['git', '-C', str(self.root), 'check-ignore', relative], capture_output=True)
+            self.assertEqual(result.returncode, 0)
+            result = subprocess.run(['git', '-C', str(self.root), 'add', '--', relative], capture_output=True)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual(path.read_bytes(), b'retained')
+        ordinary = self.scripts / '.grant-review-not-retained'
+        ordinary.write_bytes(b'ordinary')
+        result = subprocess.run(['git', '-C', str(self.root), 'check-ignore', 'scripts/' + ordinary.name], capture_output=True)
+        self.assertNotEqual(result.returncode, 0)
+        subprocess.run(['git', '-C', str(self.root), 'add', '--', 'scripts/' + ordinary.name], check=True)
+
     def test_normal_and_repeat_preserve_previous(self):
         first = self.publish()
         self.assertEqual(self.output.read_bytes(), b'new')
