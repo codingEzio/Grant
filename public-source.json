@@ -109,7 +109,8 @@
     "scripts/grant.ts",
     "scripts/policy.ts",
     "scripts/public_build.ts",
-    "scripts/public_prepare.ts"
+    "scripts/public_prepare.ts",
+    "scripts/source-review-hashes.json"
   ],
   "limitations": [
     "Source publication approved; font binaries and installers excluded",

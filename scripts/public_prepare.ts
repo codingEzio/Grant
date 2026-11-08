@@ -2,10 +2,6 @@
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
-if (Deno.args.length === 1 && Deno.args[0] === "--build") {
-  await import("./public_build.ts");
-  Deno.exit(0);
-}
 const args = Deno.args[0] === "public-prepare"
   ? ["--prepare", ...Deno.args.slice(1)]
   : Deno.args[0] === "public-check"
@@ -29,7 +25,82 @@ const decode = (b: Uint8Array) => new TextDecoder().decode(b);
 const hash = async (b: Uint8Array) =>
   [...new Uint8Array(await crypto.subtle.digest("SHA-256", Uint8Array.from(b)))]
     .map((n) => n.toString(16).padStart(2, "0")).join("");
-const config = JSON.parse(decode(await git("show", ":public-source.json")));
+// The hash is changed only as part of a review of the complete selection.
+// The running helper itself must match the staged regular file; like any local
+// tool, its code and the embedded anchor must be reviewed before trusting it.
+const reviewHash =
+  "795c854728e18bc734227614959bba7a29b6a96dba475137cf2b08d3964daa94";
+const sidecarPath = "scripts/source-review-hashes.json";
+const helperPath = "scripts/public_prepare.ts";
+const indexText = decode(await git("ls-files", "--stage", "-z"));
+const indexed = new Map<string, { mode: string; oid: string }>();
+for (const line of indexText.split("\0").filter(Boolean)) {
+  const match = /^(100644|100755) ([0-9a-f]{40,64}) 0\t([^\0]+)$/.exec(line);
+  if (!match || indexed.has(match[3])) throw Error("Invalid index entry");
+  indexed.set(match[3], { mode: match[1], oid: match[2] });
+}
+async function reviewedBytes(path: string): Promise<Uint8Array> {
+  const item = indexed.get(path);
+  if (!item) throw Error(`Unreviewed index path: ${path}`);
+  const absolute = join(root, path);
+  const stat = await Deno.lstat(absolute);
+  if (
+    !stat.isFile || stat.isSymlink ||
+    await Deno.realPath(absolute) !== absolute ||
+    ((stat.mode ?? 0) & 0o111 ? "100755" : "100644") !== item.mode
+  ) {
+    throw Error(`Unreviewed worktree path: ${path}`);
+  }
+  const data = await git("cat-file", "blob", item.oid);
+  if (await hash(await Deno.readFile(absolute)) !== await hash(data)) {
+    throw Error(`Worktree differs from reviewed index: ${path}`);
+  }
+  return data;
+}
+const sidecar = await reviewedBytes(sidecarPath);
+if (await hash(sidecar) !== reviewHash) throw Error("Review anchor differs");
+const pins = JSON.parse(decode(sidecar)) as Record<
+  string,
+  { mode: string; sha256: string }
+>;
+const helperBytes = await reviewedBytes(helperPath);
+if (
+  await hash(helperBytes) !==
+    await hash(await Deno.readFile(new URL(import.meta.url)))
+) {
+  throw Error("Executing helper differs from index");
+}
+const selectedConfig = JSON.parse(
+  decode(await reviewedBytes("public-source.json")),
+);
+const selected = selectedConfig.files as string[];
+if (
+  !Array.isArray(selected) || new Set(selected).size !== selected.length ||
+  JSON.stringify([...selected].sort()) !==
+    JSON.stringify([...Object.keys(pins), sidecarPath].sort())
+) {
+  throw Error("Selection differs from reviewed inputs");
+}
+for (const [path, pin] of Object.entries(pins)) {
+  const item = indexed.get(path);
+  if (
+    !item || item.mode !== pin.mode || !/^[a-f0-9]{64}$/.test(pin.sha256) ||
+    await hash(
+        path === helperPath
+          ? new TextEncoder().encode(
+            decode(await reviewedBytes(path)).replace(
+              /(const reviewHash =\s*")[a-f0-9]{64}(";)/,
+              "$1" + "0".repeat(64) + "$2",
+            ),
+          )
+          : await reviewedBytes(path),
+      ) !== pin.sha256
+  ) {
+    throw Error(`Source review mismatch: ${path}`);
+  }
+}
+// Read selected content only by the immutable object IDs captured above.
+const config = selectedConfig;
 if (
   config.schemaVersion !== 1 || !Array.isArray(config.files) ||
   !config.files.length || config.releaseStatus !== "source-approved"
@@ -79,7 +150,7 @@ for (const path of paths) {
       `Selected path is missing or not a regular indexed file: ${path}`,
     );
   }
-  const data = await git("show", ":" + path);
+  const data = await reviewedBytes(path);
   if (!data.includes(0)) {
     const text = decode(data);
     const rules = [

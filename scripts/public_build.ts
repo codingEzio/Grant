@@ -1,3 +1,6 @@
+throw new Error(
+  "Public builds are disabled until reviewed snapshot builds are restored.",
+);
 // Compile source-only artifacts separately from signed/installed candidates.
 import { dirname, join } from "node:path";
 import { hash, root, verifyInputs } from "./check_source.ts";
@@ -44,18 +47,24 @@ async function entry(directory: string, path: string): Promise<FileRecord> {
     sha256: await hash(data),
   };
 }
-const externalFonts = (JSON.parse(await Deno.readTextFile(join(root, "Resources/Licenses/fonts.json"))).assets as { path: string }[]).map((a) => a.path).filter((path) => path.startsWith("Resources/Fonts/"));
+const externalFonts = (JSON.parse(
+  await Deno.readTextFile(join(root, "Resources/Licenses/fonts.json")),
+).assets as { path: string }[]).map((a) => a.path).filter((path) =>
+  path.startsWith("Resources/Fonts/")
+);
 await verifyInputs();
 const sourceFiles = await Promise.all(
-  [...selection.files, ...externalFonts].sort().map((path: string) => entry(root, path)),
+  [...selection.files, ...externalFonts].sort().map((path: string) =>
+    entry(root, path)
+  ),
 );
 for (const directory of ["Sources", "Resources", "References"]) {
   const actual = (await filesAt(join(root, directory))).map((path) =>
     directory + "/" + path
   );
-  const expected = [...selection.files, ...externalFonts].filter((path: string) =>
-    path.startsWith(directory + "/")
-  ).sort();
+  const expected = [...selection.files, ...externalFonts].filter((
+    path: string,
+  ) => path.startsWith(directory + "/")).sort();
   if (JSON.stringify(actual) !== JSON.stringify(expected)) {
     throw Error("Build inputs differ from source selection: " + directory);
   }
