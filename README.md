@@ -4,7 +4,7 @@
 
 Native macOS authorization styles. **0.2.3 — local candidate.** The goal is to
 style administrator authorization across participating applications. This
-revision provides a signed settings app, an Authorization Plug-in and a guarded
+repository contains source for a settings app, an Authorization Plug-in and a guarded
 system installer. Desktop installation and system activation are separate;
 `grant status` reads the current state.
 

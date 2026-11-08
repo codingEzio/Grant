@@ -3,7 +3,7 @@
 <p><img src="Resources/README-icon.svg" width="96" height="96" alt="Grant"></p>
 
 macOS 原生授权样式。**0.2.3 · 本机候选**。目标是让使用系统授权流程的 App
-采用统一样式；现有已签名设置 App、授权插件和受保护的系统安装器。 App
+采用统一样式；本仓库提供设置 App、授权插件及受保护系统安装器的源码。 App
 安装与系统启用分开，`grant status` 读取当前状态。
 
 [English](README.md) · [简体中文](README.zh-Hans.md) · [繁體中文](README.zh-Hant.md) · [日本語](README.ja.md) · [한국어](README.ko.md) · [Español](README.es.md)
