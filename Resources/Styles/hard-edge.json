@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "hard-edge",
+  "name": "Hard Edge",
+  "layout": "hard-edge",
+  "light": {
+    "surface": "#F9D433",
+    "text": "#121514",
+    "secondary": "#30332C",
+    "accent": "#F03D28",
+    "border": "#151817",
+    "input": "#FFFDF4",
+    "glyphSurface": "#F9D433",
+    "glyphInk": "#121514",
+    "onAccent": "#FFFFFF"
+  },
+  "dark": {
+    "surface": "#222524",
+    "text": "#F5F1E7",
+    "secondary": "#C8C7BD",
+    "accent": "#F13C28",
+    "border": "#CBC8B8",
+    "input": "#303432",
+    "glyphSurface": "#F9D433",
+    "glyphInk": "#121514",
+    "onAccent": "#FFFFFF"
+  },
+  "fonts": {
+    "display": [
+      "BlackOpsOne-Regular",
+      "Impact",
+      "@system-condensed"
+    ],
+    "maximumTitleSize": 46
+  }
+}

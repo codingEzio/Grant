@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "nothing",
+  "name": "Paper Punch",
+  "layout": "paper",
+  "light": {
+    "surface": "#F7F4EC",
+    "text": "#111211",
+    "secondary": "#535753",
+    "accent": "#EF1426",
+    "border": "#B7B9B2",
+    "input": "#FBF9F3",
+    "glyphSurface": "#F7F4EC",
+    "glyphInk": "#111211",
+    "onAccent": "#FFFFFF"
+  },
+  "dark": {
+    "surface": "#202221",
+    "text": "#F4F1E9",
+    "secondary": "#BAC0BA",
+    "accent": "#EF1426",
+    "border": "#646B66",
+    "input": "#252826",
+    "glyphSurface": "#202221",
+    "glyphInk": "#F4F1E9",
+    "onAccent": "#FFFFFF"
+  },
+  "fonts": {
+    "display": [
+      "Impact",
+      "AvenirNextCondensed-Heavy",
+      "@system-condensed"
+    ],
+    "maximumTitleSize": 52
+  }
+}

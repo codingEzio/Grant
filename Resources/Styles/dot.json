@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "dot",
+  "name": "Dot Instrument",
+  "layout": "dot",
+  "light": {
+    "surface": "#F0EFEA",
+    "text": "#101211",
+    "secondary": "#575D58",
+    "accent": "#ED1424",
+    "border": "#383D39",
+    "input": "#F6F5F0",
+    "glyphSurface": "#F0EFEA",
+    "glyphInk": "#101211",
+    "onAccent": "#FFFFFF"
+  },
+  "dark": {
+    "surface": "#101211",
+    "text": "#F3F2EB",
+    "secondary": "#B7BEB9",
+    "accent": "#ED1424",
+    "border": "#8D9690",
+    "input": "#1B1F1C",
+    "glyphSurface": "#101211",
+    "glyphInk": "#F3F2EB",
+    "onAccent": "#FFFFFF"
+  },
+  "fonts": {
+    "display": [
+      "DotoMod800ZhRefined",
+      "Doto",
+      "DeparturePixelZhCompact-Regular",
+      "@system-mono"
+    ],
+    "maximumTitleSize": 40
+  }
+}

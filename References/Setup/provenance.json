@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "sourceRepository": "Setup (private source reference)",
+  "sourceCommit": "a28f5c71fe0a137900b1607a0df8888cd11f279d",
+  "sourcePathsCleanAtImport": true,
+  "importedOn": "2026-10-15",
+  "purpose": "Preserve the existing administrator authorization implementation as a local baseline for Grant, not as a replacement for the running Setup tool.",
+  "files": [
+    {
+      "path": "admin_authorize.m",
+      "source": "Utilities/Bin/admin_authorize.m",
+      "sha256": "2f8287957211a59b5f533f9d54c08241ed3ed656a0948f44b8a7ba7f486ccab7",
+      "buildUse": "Reference only. Command execution, sudo and SSH code are not compiled into the Grant reference app.",
+      "originalSourceSha256": "7e2076e35b48a8e5ca5f72570ee8b1f9556f517165a30bd33f0e0ce3a3643a74",
+      "localModification": "Generalized one SSH example account label; reference-only code."
+    },
+    {
+      "path": "admin_authorize_ui.m",
+      "source": "Utilities/Bin/admin_authorize_ui.m",
+      "sha256": "56ba768998c2716c1605b62b5506e039e2741764ed01cc852dbf84cdd3b102e8",
+      "buildUse": "Compiled unchanged into preview-only GrantSetupReference; window ordering is substituted only for offscreen captures."
+    },
+    {
+      "path": "admin_authorize_ui.h",
+      "source": "Utilities/Bin/admin_authorize_ui.h",
+      "sha256": "3ab1960e74432ce85e6bce02b145dec57877eceff71c8e4cfaa6d08303ba64be",
+      "buildUse": "Original UI interface."
+    }
+  ],
+  "language": "Original English retained as historical UI; Grant entry point is localized in three languages.",
+  "fixture": "Synthetic original-format power-settings request; no actual command, password or personal account.",
+  "license": "MIT for the three listed owner-authored reference source files, authorized by the owner on 2026-10-26. Retain source attribution and the included LICENSE. No other Setup source, history or data is licensed by this decision.",
+  "licenseFile": "LICENSE",
+  "ownerDecision": "2026-10-26"
+}

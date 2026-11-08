@@ -1,0 +1,4 @@
+#!/bin/sh
+# sudo execs this launcher as its invoking user. exec preserves the sudo parent.
+grant_resources=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd) || exit 1
+exec "$grant_resources/../MacOS/GrantPreview" --sudo-askpass "$@"

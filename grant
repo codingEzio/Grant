@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+set -euo pipefail
+GRANT_ROOT="$(cd "$(dirname "$0")" && pwd)"
+cd "$GRANT_ROOT"
+exec deno run -A scripts/grant.ts "$@"

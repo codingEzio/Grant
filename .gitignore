@@ -1,0 +1,7 @@
+Local/
+.DS_Store
+*.o
+*.dSYM/
+
+# Obtained separately and verified before building.
+/Resources/Fonts/*.ttf

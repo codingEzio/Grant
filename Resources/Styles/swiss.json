@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "swiss",
+  "name": "Swiss Signal",
+  "layout": "swiss",
+  "light": {
+    "surface": "#F7F8FB",
+    "text": "#101318",
+    "secondary": "#535C6A",
+    "accent": "#0758EE",
+    "border": "#7A8392",
+    "input": "#FBFCFE",
+    "glyphSurface": "#F7F8FB",
+    "glyphInk": "#101318",
+    "onAccent": "#FFFFFF"
+  },
+  "dark": {
+    "surface": "#111C2C",
+    "text": "#F2F5FA",
+    "secondary": "#B9C2D0",
+    "accent": "#0B58FA",
+    "border": "#8793A6",
+    "input": "#19283D",
+    "glyphSurface": "#111C2C",
+    "glyphInk": "#F2F5FA",
+    "onAccent": "#FFFFFF"
+  },
+  "fonts": {
+    "display": [
+      "HelveticaNeue-Bold",
+      "@system"
+    ],
+    "maximumTitleSize": 46
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "path": "Resources/Fonts/Doto-Variable.ttf",
+      "sourceURL": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/doto/Doto%5BROND%2Cwght%5D.ttf",
+      "sourceCommit": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "sha256": "6f4fe7d37853b91df3698daa84cde2dbe1c9695d88c986e6510134910337d426",
+      "bytes": 456924,
+      "reusedFrom": "Y-DullWidget/Resources/Fonts/Doto[ROND,wght].ttf"
+    },
+    {
+      "path": "Resources/Licenses/Doto-OFL.txt",
+      "sourceURL": "https://raw.githubusercontent.com/google/fonts/9710da1eacb3be272583c3224dcb70f9da6eadbb/ofl/doto/OFL.txt",
+      "sourceCommit": "9710da1eacb3be272583c3224dcb70f9da6eadbb",
+      "sha256": "26a7b58bdba6cda8a78ca6e8b3791d8013b8abc6d5e6519f84193893aee02020",
+      "bytes": 4382,
+      "reusedFrom": "Y-DullWidget/Resources/Licenses/Doto-OFL.txt"
+    },
+    {
+      "path": "Resources/Fonts/DeparturePixelZhCompact-Regular.ttf",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/DeparturePixelZhCompact-Regular.ttf",
+      "sha256": "3e75e623b1ba2c8d7eb52f2ac3ee71c3fbb5c4e0f1426bd34b3c1e071738288b",
+      "bytes": 4975088,
+      "sourceURL": "https://github.com/codingEzio/DeparturePixelZh-OSS/releases/download/v0.1.1/DeparturePixelZh-0.1.1-desktop.zip",
+      "archiveSHA256": "b050d6d71b3b79f947ffdd3f0fab2c4f1deb2cc77e9d32cf10942b7d09a265b8",
+      "archiveMember": "DeparturePixelZh-0.1.1-desktop/DeparturePixelZhCompact-Regular.ttf"
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/Apache2.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/Apache2.txt",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/Codicons.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/Codicons.txt",
+      "sha256": "d6239afa918961b465b07bf7411cbe34ff6685854f58553db7966f4881a0211f",
+      "bytes": 19047
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/Cubic11.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/Cubic11.txt",
+      "sha256": "2b6e5938e5cffa0b9e183bd05f8c363e174e7ebed1a0556e2855fd1707fa2188",
+      "bytes": 5364
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/Cubic11Naming.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/Cubic11Naming.txt",
+      "sha256": "7d8de3293fbde3c0be92b41496d7129ca1cf2397856cf3bf8df83007c9978755",
+      "bytes": 2481
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/DepartureMono.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/DepartureMono.txt",
+      "sha256": "b65e42750f3cb65437a97f4dfd781c58f199259949db2341012be60e32500e83",
+      "bytes": 4357
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/Devicons.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/Devicons.txt",
+      "sha256": "121194741d4a915b9f5890fdd6dd95121f9b1f816517c792358d72d7c838d664",
+      "bytes": 1072
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/DeviconsLegacy.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/DeviconsLegacy.txt",
+      "sha256": "d0c1eccf6379e2d4a702d15c8ab1bca43320edc63126ebd51f3907b8e879ee29",
+      "bytes": 3527
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/FontAwesome.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/FontAwesome.txt",
+      "sha256": "de784a808496d49f5f80dd9d1d6e9a51cff712cfbc339e7c25155631ae3cdb5d",
+      "bytes": 7427
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/FontAwesome7.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/FontAwesome7.txt",
+      "sha256": "20c6f40715a567c97b80f6944beb8bb325835cab47ea7dcab89ee3b8e077eced",
+      "bytes": 7427
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/FontAwesomeExtension.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/FontAwesomeExtension.txt",
+      "sha256": "b47b15d771c4507a75ff65beca3a78168d6af4cca9b45177a1aa817139c64ba5",
+      "bytes": 1073
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/FontLogos.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/FontLogos.txt",
+      "sha256": "88d9b4eb60579c191ec391ca04c16130572d7eedc4a86daa58bf28c6e14c9bcd",
+      "bytes": 1210
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/HackExtraGlyphs.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/HackExtraGlyphs.txt",
+      "sha256": "1f61bb7c790c59b4b0ecdf304628b94e42ae4c8020094a8c3da73381ab212623",
+      "bytes": 3744
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/MaterialDesign.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/MaterialDesign.txt",
+      "sha256": "3bae6305bcaa6d10219b999f65c342034c2d40b1c0e8567fa08605e73ccba829",
+      "bytes": 992
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/NerdFonts.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/NerdFonts.txt",
+      "sha256": "1f6ad4edae6479aaace3112ede5279a23284ae54b2a34db66357aef5f64df160",
+      "bytes": 6200
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/NerdFontsAudit.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/NerdFontsAudit.txt",
+      "sha256": "c2a3f634fa1e5001912f4f19a42fa86fdef5654691b70000f936089325aa404f",
+      "bytes": 8470
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/NerdSymbols.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/NerdSymbols.txt",
+      "sha256": "84a7a98c82140fb12c37fe42b93805baa16024cb3e5acc599b7ffe612c55d847",
+      "bytes": 1082
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/NerdSymbolsReadme.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/NerdSymbolsReadme.txt",
+      "sha256": "a4463554f951c8153d0bdfcb6e03b382baf99dcdd3f99790014427687abdc55b",
+      "bytes": 4095
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/Octicons.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/Octicons.txt",
+      "sha256": "4f886642f9e8d99eeadd484acdac011c3fde8a338faf52f5ca1408c13b9a9b63",
+      "bytes": 1068
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/Pomicons.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/Pomicons.txt",
+      "sha256": "cb4797a9745683f287c28833db596e9d68ec43082d59359b3a49c504f0f610ce",
+      "bytes": 4395
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/PowerSymbolsIEC.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/PowerSymbolsIEC.txt",
+      "sha256": "11aef1cdf2d58d822e6857e2574870ccc59d4900052bf5c098e319d750e7ac3d",
+      "bytes": 1078
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/PowerlineExtra.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/PowerlineExtra.txt",
+      "sha256": "544307a58e6826c24145b2af1c3578b53e2e21ae0e6c67ab4c6abd544304d26a",
+      "bytes": 1072
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/PowerlineSymbols.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/PowerlineSymbols.txt",
+      "sha256": "46d5355e4734468135d8e4a30d0916292cc4df2b3ec30aa68c866f82497933be",
+      "bytes": 1132
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/Seti.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/Seti.txt",
+      "sha256": "d4d2d888c6a0a220a7b0e2d6013cf37539b0e05ef937002b3b33bdb364575b88",
+      "bytes": 1054
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/WeatherIcons.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/WeatherIcons.txt",
+      "sha256": "69cdedc8a4f57a30d68e4f045af8b9cce0ec3b1a6e7eec1ad41737c894f26790",
+      "bytes": 4692
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/Licenses/WeatherIconsCredit.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/Licenses/WeatherIconsCredit.txt",
+      "sha256": "1854ba6df3083a336c6e951ed0e2c61bbf862cf4930b7861592331ce8d041159",
+      "bytes": 2965
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/NOTICE.md",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/NOTICE.md",
+      "sha256": "625eeedab97937f3cd3f0d5fb31e1c05461530684bc7c23076c4c236173c8f78",
+      "bytes": 5402,
+      "localModification": "Correct Cubic embedded version, record the Font Logos discrepancy, and link included notices."
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/OFL.txt",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/OFL.txt",
+      "sha256": "b65e42750f3cb65437a97f4dfd781c58f199259949db2341012be60e32500e83",
+      "bytes": 4357
+    },
+    {
+      "path": "Resources/Licenses/DeparturePixelZhCompact/provenance.json",
+      "sourceProject": "X-DeparturePixelZh",
+      "sourceArtifact": "X-DeparturePixelZh/Build/provenance.json",
+      "sha256": "61087275fd148b5df5cfbf1658bdecebfbc26241d0539daa7c82eb061c2011bb",
+      "bytes": 4190
+    },
+    {
+      "sourceURL": "https://raw.githubusercontent.com/google/fonts/b7c8331cf620346575487ef8db0e2c729f014675/ofl/blackopsone/BlackOpsOne-Regular.ttf",
+      "sourceCommit": "b7c8331cf620346575487ef8db0e2c729f014675",
+      "bytes": 166532,
+      "path": "Resources/Fonts/BlackOpsOne-Regular.ttf",
+      "sha256": "282a825b5f294377387e3969f765408157dbea8da0f5d0aae68c6bc704b145b3",
+      "license": "OFL-1.1",
+      "acquisition": "Pinned official Google Fonts source; bundled for offline use; no installation"
+    },
+    {
+      "sourceURL": "https://raw.githubusercontent.com/google/fonts/b7c8331cf620346575487ef8db0e2c729f014675/ofl/blackopsone/OFL.txt",
+      "sourceCommit": "b7c8331cf620346575487ef8db0e2c729f014675",
+      "bytes": 4411,
+      "path": "Resources/Licenses/BlackOpsOne-Regular-OFL.txt",
+      "sha256": "f67ca4a200424868ee8fcd5464d7b35ac1cbf7723f6bfdbd19a8524689fab9a8",
+      "license": "OFL-1.1",
+      "acquisition": "Pinned official Google Fonts source; bundled for offline use; no installation"
+    },
+    {
+      "sourceURL": "https://raw.githubusercontent.com/google/fonts/b7c8331cf620346575487ef8db0e2c729f014675/ofl/sairastencilone/SairaStencilOne-Regular.ttf",
+      "sourceCommit": "b7c8331cf620346575487ef8db0e2c729f014675",
+      "bytes": 109944,
+      "path": "Resources/Fonts/SairaStencilOne-Regular.ttf",
+      "sha256": "781496fdaf8e04cf6741b31025f6b4ba84f66021b097a8e0d85cbea2180cf223",
+      "license": "OFL-1.1",
+      "acquisition": "Pinned official Google Fonts source; bundled for offline use; no installation"
+    },
+    {
+      "sourceURL": "https://raw.githubusercontent.com/google/fonts/b7c8331cf620346575487ef8db0e2c729f014675/ofl/sairastencilone/OFL.txt",
+      "sourceCommit": "b7c8331cf620346575487ef8db0e2c729f014675",
+      "bytes": 4405,
+      "path": "Resources/Licenses/SairaStencilOne-Regular-OFL.txt",
+      "sha256": "fc7c16a0d286a351a7de245a0bd661275e9d393de8955c7fa37ef3c8b85b7e3e",
+      "license": "OFL-1.1",
+      "acquisition": "Pinned official Google Fonts source; bundled for offline use; no installation"
+    }
+  ],
+  "displayAxes": {
+    "wght": 800,
+    "ROND": 0
+  },
+  "loadingOwner": "Sources/Shared/GRGrantView.m",
+  "roles": {
+    "display": "Per-theme and per-appearance ordered font stacks; installed personal/system faces are optional",
+    "paper": "Impact, AvenirNextCondensed-Heavy, system condensed",
+    "controls": "System sans",
+    "technical": "System monospace",
+    "dot": "Installed DotoMod800ZhRefined, bundled Doto 800, bundled DeparturePixelZh Compact, system mono",
+    "swiss": "HelveticaNeue-Bold, system sans",
+    "hard-edge": "Bundled BlackOpsOne-Regular, optional Impact, system condensed",
+    "blueprint": "Bundled SairaStencilOne-Regular, bundled DeparturePixelZh Compact, system condensed"
+  },
+  "cjk": "Dot uses installed DotoMod800ZhRefined or bundled DeparturePixelZh Compact; Blueprint uses bundled DeparturePixelZh Compact; Paper/Swiss/Hard Edge use platform CJK fallback. Doto, Black Ops One and Saira Stencil One do not supply CJK."
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "style": "paper",
+  "appearance": "system",
+  "typography": "theme",
+  "language": "zh-Hans",
+  "fontOverrides": {},
+  "appearanceFontOverrides": {},
+  "terminalSudo": true
+}

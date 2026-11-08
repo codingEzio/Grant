@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Grant flat source icon</title>
+  <desc id="desc">The original icon layers in their default flat colors, without system lighting or effects.</desc>
+  <metadata>Grant contributors, 2026. CC BY 4.0. https://creativecommons.org/licenses/by/4.0/ . Flat documentation composition; see README-icon-source.json.</metadata>
+  <rect width="1024" height="1024" rx="200" fill="#f2ede0"/>
+  <path xmlns="http://www.w3.org/2000/svg" fill="#171717" d="M304 456V322c0-111 81-194 188-194s188 83 188 194v38h-96v-38c0-57-37-98-92-98s-92 41-92 98v134h300c31 0 56 25 56 56v288c0 31-25 56-56 56H324c-31 0-56-25-56-56V512c0-31 16-56 36-56Z" />
+  <path xmlns="http://www.w3.org/2000/svg" fill="#ff302c" d="m366 640 66-66 83 83 146-146 66 66-212 212Z" />
+</svg>

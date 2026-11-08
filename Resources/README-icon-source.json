@@ -1,0 +1,26 @@
+{
+  "kind": "flat-documentation-icon",
+  "sourceAssets": [
+    {
+      "path": "Resources/Grant.icon/Assets/lock.svg",
+      "sha256": "892b86001b39b216ad91353512b28a18c7f7e78491712b225bd6af5443d7aae0"
+    },
+    {
+      "path": "Resources/Grant.icon/Assets/check.svg",
+      "sha256": "34192f4ef0adfeccc64b8a325527cc7d88c86fc0804c0e6dbb2219a9df7eb7c1"
+    }
+  ],
+  "backgroundSource": {
+    "path": "Resources/Grant.icon/icon.json",
+    "sha256": "78dad0718a2fb70ac27187dc773e0cacdc0474955677f44696a1be5c92eaf205",
+    "flatSrgbHex": "#f2ede0"
+  },
+  "image": {
+    "path": "Resources/README-icon.svg",
+    "sha256": "7d912346243d9b4c2008eabecc768bdbb5a3f5e0f053dc6852934952f936eafe"
+  },
+  "license": "CC-BY-4.0",
+  "attribution": "Grant contributors",
+  "changes": "Compose original unmodified vector shapes over the default flat source background; add a rounded documentation boundary. No native/system lighting, glass or shadow simulation.",
+  "unchanged": "Original icon assets/configuration, App, runtime and installed identity."
+}

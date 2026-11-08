@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "id": "blueprint",
+  "name": "Blueprint",
+  "layout": "blueprint",
+  "light": {
+    "surface": "#F0F6FC",
+    "text": "#10284A",
+    "secondary": "#3B5874",
+    "accent": "#FF721F",
+    "border": "#284E75",
+    "input": "#F8FBFF",
+    "glyphSurface": "#D8EDFF",
+    "glyphInk": "#10284A",
+    "onAccent": "#0A1C30"
+  },
+  "dark": {
+    "surface": "#101F31",
+    "text": "#D9EDFF",
+    "secondary": "#ABCFEA",
+    "accent": "#FF791F",
+    "border": "#82BCE8",
+    "input": "#14263B",
+    "glyphSurface": "#D8EDFF",
+    "glyphInk": "#10284A",
+    "onAccent": "#0A1C30"
+  },
+  "fonts": {
+    "display": [
+      "SairaStencilOne-Regular",
+      "DeparturePixelZhCompact-Regular",
+      "@system-condensed"
+    ],
+    "maximumTitleSize": 64
+  }
+}
